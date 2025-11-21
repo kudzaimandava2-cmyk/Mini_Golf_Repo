@@ -579,6 +579,7 @@ MonoBehaviour:
   inputPlayerName: {fileID: 1591646734}
   playerRecord: {fileID: 1096763264}
   buttonStart: {fileID: 1260668265}
+  buttonAddPlayer: {fileID: 1820258428}
 --- !u!1 &961739749
 GameObject:
   m_ObjectHideFlags: 0
@@ -1017,8 +1018,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e274281d583189489a84ca88594a140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerRecord
-  levels: []
-  playerColours: []
+  levels:
+  - Level 1
+  playerColours:
+  - {r: 0.6830188, g: 0.08634387, b: 0.08634387, a: 0}
+  - {r: 0.15949446, g: 0.3210321, b: 0.645283, a: 0}
+  - {r: 0.5773585, g: 0.25164112, b: 0.54166013, a: 0}
 --- !u!4 &1096763265
 Transform:
   m_ObjectHideFlags: 0
