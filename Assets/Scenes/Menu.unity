@@ -330,7 +330,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25.45
+  m_fontSize: 38.65
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -801,7 +801,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28.6
+  m_fontSize: 44.5
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -937,7 +937,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 54.2
+  m_fontSize: 77.15
   m_fontSizeBase: 101.6
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1094,7 +1094,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25.95
+  m_fontSize: 37.95
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1228,7 +1228,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1260668266}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 755919624}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: ButtonStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1260668266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1351,7 +1363,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22
+  m_fontSize: 35.3
   m_fontSizeBase: 15.6
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1627,7 +1639,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerRecord
   levels:
   - 
-  playerColours: []
+  playerColours:
+  - {r: 0.6830188, g: 0.1791313, b: 0.5740796, a: 0}
+  - {r: 0.24428901, g: 0.81886786, b: 0.17149875, a: 0}
+  - {r: 0.8792453, g: 0.87523025, b: 0.2040512, a: 0}
 --- !u!1 &1740377975
 GameObject:
   m_ObjectHideFlags: 0

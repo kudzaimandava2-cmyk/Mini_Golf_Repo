@@ -1,5 +1,7 @@
+using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
@@ -18,5 +20,9 @@ public class MenuManager : MonoBehaviour
         {
             buttonAddPlayer.interactable = false;
         }
+    }
+    public void ButtonStart()
+    {
+        SceneManager.LoadScene(playerRecord.levels[0]);
     }
 }
