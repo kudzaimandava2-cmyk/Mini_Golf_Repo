@@ -330,7 +330,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15.4
+  m_fontSize: 30.05
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -573,13 +573,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 755919619}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbd91364c0f56014a9aaaecbba57169b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a82ba5516c98bf46b124b6674a8cf8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuManager
-  inputPlayerName: {fileID: 1591646734}
-  playerRecord: {fileID: 1096763264}
-  buttonStart: {fileID: 1260668265}
-  buttonAddPlayer: {fileID: 1820258428}
 --- !u!1 &961739749
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,7 +797,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16.6
+  m_fontSize: 34.05
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -937,7 +933,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36.85
+  m_fontSize: 62.1
   m_fontSizeBase: 101.6
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -998,7 +994,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1096763265}
-  - component: {fileID: 1096763264}
+  - component: {fileID: 1096763266}
   m_Layer: 0
   m_Name: Player Record
   m_TagString: Untagged
@@ -1006,24 +1002,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1096763264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1096763263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e274281d583189489a84ca88594a140, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerRecord
-  levels:
-  - Level 1
-  playerColours:
-  - {r: 0.6830188, g: 0.08634387, b: 0.08634387, a: 0}
-  - {r: 0.15949446, g: 0.3210321, b: 0.645283, a: 0}
-  - {r: 0.5773585, g: 0.25164112, b: 0.54166013, a: 0}
 --- !u!4 &1096763265
 Transform:
   m_ObjectHideFlags: 0
@@ -1039,6 +1017,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1096763266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096763263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e274281d583189489a84ca88594a140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerRecord
+  levels: []
+  playerColours: []
 --- !u!1 &1241879102
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,7 +1136,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16.6
+  m_fontSize: 30.1
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1401,7 +1393,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 26.6
   m_fontSizeBase: 15.6
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1845,7 +1837,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 755919624}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: ButtonAddPlayer
         m_Mode: 1

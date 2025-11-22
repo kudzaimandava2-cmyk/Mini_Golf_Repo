@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +7,7 @@ public class PlayerRecord : MonoBehaviour
     public string[] levels;
     public Color[] playerColours;
 
-    private void OnEnable()
+    void OnEnable()
     {
         playerList = new List<Player>();
     }
@@ -23,12 +22,14 @@ public class PlayerRecord : MonoBehaviour
         private string name;
         public Color colour;
         public int[] putts;
+    
 
-        public Player(string newName, Color newColor, int levelCount)
+        public Player (string newName, Color newColor, int levelCount)
         {
             name = newName;
             colour = newColor;
             putts = new int[levelCount];
         }
+            
     }
 }
