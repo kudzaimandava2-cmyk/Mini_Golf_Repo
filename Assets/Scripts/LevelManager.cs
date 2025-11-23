@@ -2,12 +2,17 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+    public BallController ball;
+
     private PlayerRecord playerRecord;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
-        
+        playerRecord = GameObject.Find("Player Record").GetComponent<PlayerRecord>();
     }
 
-   
+    private void SetupPlayer()
+    {
+
+    }
 }
