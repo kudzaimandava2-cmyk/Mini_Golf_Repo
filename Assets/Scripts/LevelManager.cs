@@ -12,30 +12,51 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-        playerRecord = GameObject.Find("Player Record").GetComponent<PlayerRecord>();
+        playerRecord = GameObject.Find("Player Record")?.GetComponent<PlayerRecord>();
+        if (playerRecord == null || playerRecord.playerList.Count == 0) return;
+
         playerIndex = 0;
         SetupPlayer();
     }
 
     private void SetupPlayer()
     {
-        ball.SetupBall(playerRecord.playerColours[playerIndex]);
-        labelPlayerName.text = playerRecord.playerList[playerIndex].name;
+        if (ball != null && playerIndex < playerRecord.playerColours.Length)
+        {
+            ball.SetupBall(playerRecord.playerColours[playerIndex]);
+        }
+
+        if (labelPlayerName != null && playerIndex < playerRecord.playerList.Count)
+        {
+            labelPlayerName.ForceMeshUpdate(); // TMP-safe initialization
+            labelPlayerName.text = playerRecord.playerList[playerIndex].name;
+        }
     }
 
     public void NextPlayer(int previousPutts)
     {
+        if (playerRecord == null) return;
+
         playerRecord.AddPutts(playerIndex, previousPutts);
+
         if (playerIndex < playerRecord.playerList.Count - 1)
         {
             playerIndex++;
-            ball.SetupBall(playerRecord.playerColours[playerIndex]);
+
+            if (ball != null && playerIndex < playerRecord.playerColours.Length)
+                ball.SetupBall(playerRecord.playerColours[playerIndex]);
+
+            if (labelPlayerName != null && playerIndex < playerRecord.playerList.Count)
+            {
+                labelPlayerName.ForceMeshUpdate();
+                labelPlayerName.text = playerRecord.playerList[playerIndex].name;
+            }
         }
         else
         {
-            if (playerRecord.levelIndex == playerRecord.levels.Length - 1)
+            if (playerRecord.levelIndex >= playerRecord.levels.Length - 1)
             {
-                //Load Scoreboard Scene
+                Debug.Log("Scoreboard");
             }
             else
             {

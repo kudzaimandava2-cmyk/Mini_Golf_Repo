@@ -6,7 +6,7 @@ public class PlayerRecord : MonoBehaviour
     public List<Player> playerList = new List<Player>();
     public string[] levels;
     public Color[] playerColours;
-    public int levelIndex;
+    [HideInInspector] public int levelIndex;
 
     void Awake()
     {

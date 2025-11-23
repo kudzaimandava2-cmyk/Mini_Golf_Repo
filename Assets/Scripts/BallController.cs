@@ -25,51 +25,56 @@ public class BallController : MonoBehaviour
     void Awake()
     {
         ball = GetComponent<Rigidbody>();
-        ball.maxAngularVelocity = 1000;
+        if (ball != null)
+            ball.maxAngularVelocity = 1000;
+
         line = GetComponent<LineRenderer>();
-        startTransform.GetComponent<MeshRenderer>().enabled = false;
+        if (line == null)
+        {
+            line = gameObject.AddComponent<LineRenderer>();
+        }
+
+        if (startTransform != null)
+        {
+            var renderer = startTransform.GetComponent<MeshRenderer>();
+            if (renderer != null)
+                renderer.enabled = false;
+        }
     }
 
     void Update()
-    {   //Aim left
+    {
+        if (ball == null) return;
 
+        // Ball must be completely stopped to aim or shoot
         if (ball.angularVelocity.magnitude < 0.01f)
         {
-            if (Input.GetKey(KeyCode.A))
-            {
-                ChangeAngle(-1);
-            }
-            //Aim Right
-            if (Input.GetKey(KeyCode.D))
-            {
-                ChangeAngle(1);
-            }
-            //Powerup
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-                Putt();
-            }
-            if (Input.GetKey(KeyCode.Space))
-            {
-                PowerUp();
-            }
-            UpdateLinePositions();
+            lastPosition = transform.position;
+
+            if (Input.GetKey(KeyCode.A)) ChangeAngle(-1);
+            if (Input.GetKey(KeyCode.D)) ChangeAngle(1);
+            if (Input.GetKey(KeyCode.Space)) PowerUp();
+            if (Input.GetKeyUp(KeyCode.Space)) Putt();
+
+            if (holeTime == 0) UpdateLinePositions();
         }
         else
         {
-            line.enabled = false;
+            if (line != null)
+                line.enabled = false;
         }
-        
     }
 
     private void ChangeAngle(int direction)
     {
         angle += changeAngleSpeed * Time.deltaTime * direction;
+        angle = Mathf.Repeat(angle, 360f);
     }
 
     private void UpdateLinePositions()
-    {  
-        if (holeTime == 0) {line.enabled = true; }
+    {
+        if (line == null) return;
+        line.enabled = true;
         line.SetPosition(0, transform.position);
         line.SetPosition(1, transform.position + Quaternion.Euler(0, angle, 0) * Vector3.forward * lineLength);
     }
@@ -77,28 +82,31 @@ public class BallController : MonoBehaviour
     private void Putt()
     {
         lastPosition = transform.position;
-        ball.AddForce(Quaternion.Euler(0, angle, 0) * Vector3.forward * maxPower * power, ForceMode.Impulse);
+        if (ball != null)
+            ball.AddForce(Quaternion.Euler(0, angle, 0) * Vector3.forward * maxPower * power, ForceMode.Impulse);
+
         power = 0;
-        powerSlider.value = 0;
         powerUpTime = 0;
+        if (powerSlider != null) powerSlider.value = 0;
+
         putts++;
-        puttCountLabel.text = putts.ToString();
+        if (puttCountLabel != null)
+        {
+            puttCountLabel.ForceMeshUpdate(); // TMP-safe
+            puttCountLabel.text = putts.ToString();
+        }
     }
 
-    //Adjust power with slider
     private void PowerUp()
     {
         powerUpTime += Time.deltaTime;
         power = Mathf.PingPong(powerUpTime, 1);
-        powerSlider.value = power;
+        if (powerSlider != null) powerSlider.value = power;
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Hole")
-        {
-            CountHoleTime(); 
-        }
+        if (other.CompareTag("Hole")) CountHoleTime();
     }
 
     private void CountHoleTime()
@@ -106,42 +114,50 @@ public class BallController : MonoBehaviour
         holeTime += Time.deltaTime;
         if (holeTime >= minHoleTime)
         {
-            levelManager.NextPlayer(putts);
+            if (levelManager != null)
+                levelManager.NextPlayer(putts);
             holeTime = 0;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Hole")
-        {
-            LeftHole();
-        }
-    }
-
-    private void LeftHole()
-    {
-        holeTime = 0;
+        if (other.CompareTag("Hole")) holeTime = 0;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "Out Of Bounds")
+        if (collision.collider.CompareTag("Out Of Bounds"))
         {
             transform.position = lastPosition;
-            ball.angularVelocity = Vector3.zero;
+            if (ball != null) ball.angularVelocity = Vector3.zero;
         }
     }
 
     public void SetupBall(Color color)
     {
-        transform.position = startTransform.position;
-        angle = startTransform.rotation.eulerAngles.y;
-        ball.angularVelocity = Vector3.zero;
-        GetComponent<MeshRenderer>().material.SetColor("_Color", color);
-        line.material.SetColor("_Color", color);
-        line.enabled = true;
+        if (startTransform != null)
+            transform.position = startTransform.position;
+
+        angle = startTransform != null ? startTransform.rotation.eulerAngles.y : 0f;
+
+        if (ball != null)
+            ball.angularVelocity = Vector3.zero;
+
+        var renderer = GetComponent<MeshRenderer>();
+        if (renderer != null)
+            renderer.material.color = color;
+
+        if (line != null)
+            line.material.color = color;
+
+        if (line != null) line.enabled = true;
+
         putts = 0;
-        puttCountLabel.text = "0";
+        if (puttCountLabel != null)
+        {
+            puttCountLabel.ForceMeshUpdate();
+            puttCountLabel.text = "0";
+        }
     }
 }
