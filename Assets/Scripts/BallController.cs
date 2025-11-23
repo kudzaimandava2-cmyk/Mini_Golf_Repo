@@ -26,6 +26,7 @@ public class BallController : MonoBehaviour
         ball = GetComponent<Rigidbody>();
         ball.maxAngularVelocity = 1000;
         line = GetComponent<LineRenderer>();
+        startTransform.GetComponent<MeshRenderer>().enabled = false;
     }
 
     void Update()
