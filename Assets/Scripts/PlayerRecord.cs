@@ -3,19 +3,28 @@ using UnityEngine;
 
 public class PlayerRecord : MonoBehaviour
 {
-    public List<Player> playerList;
+    public List<Player> playerList = new List<Player>();
     public string[] levels;
     public Color[] playerColours;
+    public int levelIndex;
 
-    void OnEnable()
+    void Awake()
     {
-        playerList = new List<Player>();
+        // Make this object persist across scenes
         DontDestroyOnLoad(gameObject);
     }
 
     public void AddPlayer(string name)
     {
-        playerList.Add(new Player(name, playerColours[playerList.Count], levels.Length));
+        // Safety check: prevent out of range if colours < players
+        int colorIndex = Mathf.Clamp(playerList.Count, 0, playerColours.Length - 1);
+
+        playerList.Add(new Player(name, playerColours[colorIndex], levels.Length));
+    }
+
+    public void AddPutts(int playerIndex, int PuttCount)
+    {
+        playerList[playerIndex].putts[levelIndex] = PuttCount;
     }
 
     public class Player
@@ -23,14 +32,12 @@ public class PlayerRecord : MonoBehaviour
         public string name;
         public Color colour;
         public int[] putts;
-    
 
-        public Player (string newName, Color newColor, int levelCount)
+        public Player(string newName, Color newColor, int levelCount)
         {
             name = newName;
             colour = newColor;
             putts = new int[levelCount];
         }
-            
     }
 }

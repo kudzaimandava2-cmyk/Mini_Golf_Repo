@@ -11,6 +11,7 @@ public class BallController : MonoBehaviour
     public TextMeshProUGUI puttCountLabel;
     public float minHoleTime;
     public Transform startTransform;
+    public LevelManager levelManager;
 
     private LineRenderer line;
     private Rigidbody ball;
@@ -105,8 +106,7 @@ public class BallController : MonoBehaviour
         holeTime += Time.deltaTime;
         if (holeTime >= minHoleTime)
         {
-            //player had finished, move on to the next player
-            Debug.Log("I'm in the hole and it only took me " + putts + " putts to get in");
+            levelManager.NextPlayer(putts);
             holeTime = 0;
         }
     }
