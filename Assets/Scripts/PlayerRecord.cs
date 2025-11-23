@@ -20,7 +20,7 @@ public class PlayerRecord : MonoBehaviour
 
     public class Player
     {
-        private string name;
+        public string name;
         public Color colour;
         public int[] putts;
     
