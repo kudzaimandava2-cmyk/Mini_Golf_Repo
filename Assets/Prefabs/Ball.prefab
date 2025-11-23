@@ -192,6 +192,7 @@ MonoBehaviour:
   puttCountLabel: {fileID: 0}
   minHoleTime: 2
   startTransform: {fileID: 0}
+  levelManager: {fileID: 0}
 --- !u!120 &3507745784450007219
 LineRenderer:
   serializedVersion: 2
